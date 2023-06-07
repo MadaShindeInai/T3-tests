@@ -27,7 +27,7 @@ const SignInPage = () => {
   return (
     <div style={styles}>
       <p>{t("test")}</p>
-      <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+      <SignIn />
     </div>
   );
 };
