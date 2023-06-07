@@ -1,10 +1,36 @@
 import { SignIn } from "@clerk/nextjs";
+import { GetStaticPathsContext, GetStaticPropsContext } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const SignInPage = () => (
-  <div style={styles}>
-    <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
-  </div>
-);
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "en", ["common"])),
+      // Will be passed to the page component as props
+    },
+  };
+}
+
+export const getStaticPaths = ({ locales }: GetStaticPathsContext) => {
+  const paths = locales?.flatMap((locale) => [
+    { params: { index: [""] }, locale },
+  ]);
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+const SignInPage = () => {
+  const { t } = useTranslation("common");
+  return (
+    <div style={styles}>
+      <p>{t("test")}</p>
+      <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+    </div>
+  );
+};
 
 export default SignInPage;
 
