@@ -2,6 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 import { GetStaticPathsContext, GetStaticPropsContext } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
@@ -23,11 +24,12 @@ export const getStaticPaths = ({ locales }: GetStaticPathsContext) => {
 };
 
 const SignInPage = () => {
+  const { locale = "en" } = useRouter();
+  const path = locale === "en" ? "/sign-in" : `/${locale}/sign-in`;
   const { t } = useTranslation("common");
   return (
     <div style={styles}>
-      <p>{t("test")}</p>
-      <SignIn />
+      <SignIn path={path} />
     </div>
   );
 };
