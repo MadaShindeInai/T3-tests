@@ -9,7 +9,6 @@ export default authMiddleware({
     "/sign-up",
   ],
   afterAuth(auth, req, evt) {
-    console.log(req);
     // handle users who aren't authenticated
     if (!auth.userId && !auth.isPublicRoute) {
       const signInUrl = new URL("/sign-in", req.url);
