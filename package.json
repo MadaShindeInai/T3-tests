@@ -30,7 +30,7 @@
     "@trpc/next": "^10.27.1",
     "@trpc/react-query": "^10.27.1",
     "@trpc/server": "^10.27.1",
-    "@types/node": "^20.2.4",
+    "@types/node": "^20.8.4",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.10",
